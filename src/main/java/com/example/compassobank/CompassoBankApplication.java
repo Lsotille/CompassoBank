@@ -7,13 +7,13 @@ import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class CompassoBankApplication {
-
-    @Bean
+  
+  @Bean
     public ModelMapper modelMapper() {
         return new ModelMapper();
     }
 
-    public static void main(String[] args) {
+   public static void main(String[] args) {
         SpringApplication.run(CompassoBankApplication.class, args);
     }
 
