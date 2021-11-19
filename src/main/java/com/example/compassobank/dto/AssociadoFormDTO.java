@@ -1,5 +1,6 @@
 package com.example.compassobank.dto;
 
+import com.example.compassobank.entity.Endereco;
 import lombok.Data;
 
 
@@ -20,4 +21,5 @@ public class AssociadoFormDTO {
 
     private Integer cnpj;
 
+    private Endereco endereco;
 }
