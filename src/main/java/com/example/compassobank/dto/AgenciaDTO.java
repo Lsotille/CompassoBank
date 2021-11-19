@@ -1,4 +1,5 @@
 package com.example.compassobank.dto;
+import com.example.compassobank.entity.Endereco;
 import lombok.Data;
 
 
@@ -16,4 +17,5 @@ public class AgenciaDTO {
 
     private Integer CNPJ;
 
+    private Endereco endereco;
 }
