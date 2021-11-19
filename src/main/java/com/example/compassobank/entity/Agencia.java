@@ -20,4 +20,7 @@ public class Agencia {
 
     private Integer CNPJ;
 
+    @OneToOne
+    private Endereco endereco;
+
 }

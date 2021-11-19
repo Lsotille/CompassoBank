@@ -7,11 +7,8 @@ import javax.persistence.*;
 @Data
 @Entity
 @Table(name = "banqueiro")
-public class Banqueiro {
+public class Banqueiro extends Associado{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
     private Long agencia;
 

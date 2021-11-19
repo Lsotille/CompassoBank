@@ -24,4 +24,7 @@ public class Associado {
 
     private Integer cnpj;
 
+    @OneToOne
+    private Endereco endereco;
+
 }
