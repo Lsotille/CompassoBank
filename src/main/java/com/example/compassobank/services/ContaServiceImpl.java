@@ -3,8 +3,6 @@ package com.example.compassobank.services;
 
 import com.example.compassobank.dto.*;
 
-
-import com.example.compassobank.entity.Associado;
 import com.example.compassobank.entity.Conta;
 import com.example.compassobank.repository.ContaRepository;
 import org.modelmapper.ModelMapper;
@@ -77,7 +75,7 @@ public class ContaServiceImpl implements ContaService{
             Conta st = this.repository.save(conta.get());
             return mapper.map(st, ContaDTO.class);
         }
-        throw new RuntimeException("Associado não encontrado");
+        throw new RuntimeException("Conta não encontrada");
     }
 
     @Override
