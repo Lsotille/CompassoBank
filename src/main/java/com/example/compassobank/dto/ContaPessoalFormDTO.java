@@ -2,22 +2,24 @@ package com.example.compassobank.dto;
 
 import lombok.Data;
 
+import java.math.BigDecimal;
+
 @Data
 public class ContaPessoalFormDTO {
 
     private String agencia;
 
-    private double saldo;
+    private BigDecimal saldo;
 
     private String senha;
 
-    private double juros;
+    private BigDecimal juros;
 
-    private double limite;
+    private BigDecimal limite;
 
     private int cheques;
 
-    private double credito;
+    private BigDecimal credito;
 
-    private double saldoAplicacao;
+    private BigDecimal saldoAplicacao;
 }

@@ -3,6 +3,7 @@ package com.example.compassobank.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Data
 @Entity
@@ -15,10 +16,13 @@ public class Conta {
 
     private String agencia;
 
-    private double saldo;
+    private BigDecimal saldo;
 
     private String senha;
 
-    private double juros;
+    private BigDecimal juros;
+
+    @OneToOne
+    private Associado associdado;
 
 }
