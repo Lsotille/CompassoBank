@@ -22,4 +22,6 @@ public class ContaPessoalFormDTO {
     private BigDecimal credito;
 
     private BigDecimal saldoAplicacao;
+
+    private Long idAssociado;
 }

@@ -14,4 +14,6 @@ public class ContaFormDTO {
     private String senha;
 
     private BigDecimal juros;
+
+    private Long idAssociado;
 }

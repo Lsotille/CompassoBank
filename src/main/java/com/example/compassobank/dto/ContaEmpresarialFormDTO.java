@@ -22,4 +22,6 @@ public class ContaEmpresarialFormDTO {
     private double limite;
 
     private double credito;
+
+    private Long idAssociado;
 }

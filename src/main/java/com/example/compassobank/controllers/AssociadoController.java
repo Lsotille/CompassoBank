@@ -20,7 +20,6 @@ public class AssociadoController {
         return ResponseEntity.ok(state);
     }
 
-
     @GetMapping(path = "/{id}")
     public ResponseEntity<AssociadoDTO> procurar (@RequestParam(value = "id") Long id){
         return ResponseEntity.ok(this.service.procurar(id));

@@ -1,5 +1,6 @@
 package com.example.compassobank.dto;
 
+import com.example.compassobank.entity.Associado;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -16,5 +17,7 @@ public class ContaDTO {
     private String senha;
 
     private BigDecimal juros;
+
+    private Long idAssociado;
 
 }
