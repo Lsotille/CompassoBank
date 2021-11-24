@@ -1,5 +1,6 @@
 package com.example.compassobank.dto;
 
+import java.math.BigDecimal;
 import lombok.Data;
 
 @Data
@@ -9,11 +10,11 @@ public class ContaEmpresarialDTO {
 
     private String agencia;
 
-    private double saldo;
+    private BigDecimal saldo;
 
     private String senha;
 
-    private double juros;
+    private BigDecimal juros;
 
     private String nomeFantasia;
 
@@ -21,9 +22,9 @@ public class ContaEmpresarialDTO {
 
     private String tipoEmpresa;
 
-    private double limite;
+    private BigDecimal limite;
 
-    private double credito;
+    private BigDecimal credito;
 
     private Long idAssociado;
 }
