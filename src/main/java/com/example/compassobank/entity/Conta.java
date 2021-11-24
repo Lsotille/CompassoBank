@@ -22,6 +22,8 @@ public class Conta {
 
     private BigDecimal juros;
 
+    private boolean ativo = false;
+
     @OneToOne
     private Associado associdado;
 
