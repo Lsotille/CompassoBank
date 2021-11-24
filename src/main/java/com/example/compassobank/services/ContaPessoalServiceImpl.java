@@ -8,6 +8,7 @@ import com.example.compassobank.repository.ContaPessoalRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.math.BigDecimal;
 import java.util.Optional;
 
 import static org.aspectj.runtime.internal.Conversions.floatValue;
@@ -132,7 +133,24 @@ public class ContaPessoalServiceImpl implements ContaPessoalService {
                 Conta st = this.repository.save(conta.get());
                 return mapper.map(st, ContaPessoalDTO.class);
             } else {
-                throw new RuntimeException("Sem saldo Suficiente");
+                throw new RuntimeException("Saldo insuficiente para esta operação");
+            }
+        }
+        throw new RuntimeException("Conta não encontrada");
+    }
+
+    @Override
+    public ContaPessoalDTO pagarCredito(Long id) {
+        Optional<ContaPessoal> conta = this.repository.findById(id);
+        float saldo = floatValue(conta.get().getSaldo());
+        float credito = floatValue(conta.get().getCredito());
+        if (conta.isPresent()) {
+            if (saldo >= credito) {
+                conta.get().setSaldo(conta.get().getSaldo().subtract(conta.get().getCredito()));
+                conta.get().setCredito(conta.get().getCredito().subtract(conta.get().getCredito()));
+            }
+            else {
+                throw new RuntimeException("Saldo insuficiente para esta operação");
             }
         }
         throw new RuntimeException("Conta não encontrada");
