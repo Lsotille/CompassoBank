@@ -25,4 +25,5 @@ public interface ContaPessoalService {
 
     ContaPessoalDTO aplicarPoupanca(Long id, OperacoesDTO valor);
 
+    ContaPessoalDTO pagarCredito(Long id);
 }
