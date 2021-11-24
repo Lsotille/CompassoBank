@@ -62,4 +62,9 @@ public class ContaPessoalController {
         return ResponseEntity.ok(this.service.aplicarPoupanca(id,body));
     }
 
+    @PatchMapping(path = "/{id}/pagarCredito")
+    public ResponseEntity<ContaPessoalDTO> pagarCredito (@RequestParam(value = "id") Long id){
+        return ResponseEntity.ok(this.service.pagarCredito(id));
+    }
+
 }

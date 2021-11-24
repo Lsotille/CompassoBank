@@ -8,7 +8,6 @@ import com.example.compassobank.repository.ContaPessoalRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.math.BigDecimal;
 import java.util.Optional;
 
 import static org.aspectj.runtime.internal.Conversions.floatValue;

@@ -2,8 +2,9 @@ package com.example.compassobank.services;
 
 
 import com.example.compassobank.dto.*;
-import com.example.compassobank.entity.ContaEmpresarial;
+import org.springframework.stereotype.Service;
 
+@Service
 public interface BanqueiroService {
     BanqueiroDTO salvar(BanqueiroFormDTO body);
 

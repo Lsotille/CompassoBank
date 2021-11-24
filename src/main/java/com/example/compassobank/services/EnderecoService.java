@@ -3,15 +3,13 @@ package com.example.compassobank.services;
 
 import com.example.compassobank.dto.EnderecoDTO;
 import com.example.compassobank.dto.EnderecoFormDTO;
+import org.springframework.stereotype.Service;
 
-import java.util.List;
-
+@Service
 public interface EnderecoService {
 
 
     EnderecoDTO salvar(EnderecoFormDTO body);
-
-    List<EnderecoDTO> listar();
 
     EnderecoDTO procurar(Long id);
 
