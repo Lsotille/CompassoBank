@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import java.math.BigDecimal;
 
 @Data
 @Entity
@@ -16,8 +17,8 @@ public class ContaEmpresarial extends Conta{
 
     private String tipoEmpresa;
 
-    private double limite;
+    private BigDecimal limite;
 
-    private double credito;
+    private BigDecimal credito;
 
 }
