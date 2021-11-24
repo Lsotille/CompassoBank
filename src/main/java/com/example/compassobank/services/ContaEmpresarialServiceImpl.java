@@ -32,22 +32,35 @@ public class ContaEmpresarialServiceImpl implements ContaEmpresarialService{
 
     @Override
     public ContaEmpresarialDTO salvar(ContaEmpresarialFormDTO body) {
-        return null;
+        ContaEmpresarial contaEmpresarial = mapper.map(body, ContaEmpresarial.class);
+        ContaEmpresarial contaEmpresarialResponse =  this.repository.save(contaEmpresarial);
+        return mapper.map(contaEmpresarialResponse, ContaEmpresarialDTO.class);
     }
 
     @Override
     public ContaEmpresarialDTO procurar(long id) {
-        return null;
+        Optional<ContaEmpresarial> contaEmpresarial = this.repository.findById(id);
+        if (contaEmpresarial.isPresent()) {
+            return mapper.map(contaEmpresarial.get(), ContaEmpresarialDTO.class);
+        }
+        throw new RuntimeException("Conta Empresarial não localizada");
     }
 
     @Override
     public ContaEmpresarialDTO atualizar(long id, ContaEmpresarialFormDTO body) {
-        return null;
+        Optional<ContaEmpresarial> contaEmpresarial = this.repository.findById(id);
+        if (contaEmpresarial.isPresent()) {
+            contaEmpresarial.get().setSenha(body.getSenha());
+            ContaEmpresarial st = this.repository.save(contaEmpresarial.get());
+            return mapper.map(st, ContaEmpresarialDTO.class);
+        }
+        throw new RuntimeException("Conta Empresarial não localizada");
     }
 
     @Override
     public void remover(Long id) {
-
+        ContaEmpresarial contaEmpresarial = this.repository.findById(id).get();
+        this.repository.delete(contaEmpresarial);
     }
 
     @Override
