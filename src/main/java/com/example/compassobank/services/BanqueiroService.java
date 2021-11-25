@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface BanqueiroService {
+
     BanqueiroDTO salvar(BanqueiroFormDTO body);
 
     BanqueiroDTO procurar(Long id);
@@ -19,4 +20,6 @@ public interface BanqueiroService {
     ContaPessoalDTO aprovarEmprestimoPessoal(Long id, OperacoesDTO body);
 
     ContaEmpresarialDTO aprovarEmprestimoEmpresarial(Long id, OperacoesDTO body);
+
+    ContaDTO saldoParaMoedaEstrangeira(Long id, OperacoesDTO valor);
 }

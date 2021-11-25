@@ -9,7 +9,10 @@ import com.example.compassobank.repository.ContaRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.math.BigDecimal;
 import java.util.Optional;
+
+import static org.aspectj.runtime.internal.Conversions.floatValue;
 
 
 public class BanqueiroServiceImpl implements BanqueiroService {
@@ -94,6 +97,25 @@ public class BanqueiroServiceImpl implements BanqueiroService {
             conta.get().setCredito(conta.get().getCredito().add(body.getValor()));
             ContaEmpresarial st = this.contaEmpresarialRepository.save(conta.get());
             return mapper.map(st, ContaEmpresarialDTO.class);
+        }
+        throw new RuntimeException("Conta não encontrada");
+    }
+
+    @Override
+    public ContaDTO saldoParaMoedaEstrangeira(Long id, OperacoesDTO valor) {
+        Optional<Conta> conta = this.contaRepository.findById(id);
+        float saldo = floatValue(conta.get().getSaldo());
+        float valorD = floatValue(valor.getValor());
+        float valorR = (float) (valorD * 5.55);
+        BigDecimal multi = new BigDecimal(5.55);
+        if (conta.isPresent()) {
+            if (saldo > valorR) {
+                conta.get().setSaldo(conta.get().getSaldo().subtract(valor.getValor().multiply(multi)));
+                Conta st = this.contaRepository.save(conta.get());
+                return mapper.map(st, ContaDTO.class);
+            } else {
+                throw new RuntimeException("Sem saldo Suficiente");
+            }
         }
         throw new RuntimeException("Conta não encontrada");
     }
