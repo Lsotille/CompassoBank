@@ -64,5 +64,26 @@ public class DiretorController {
         return ResponseEntity.ok(this.service.modificarJuros(id,body));
     }
 
+    @PostMapping(path = "/{id}/abonarDividaPessoal")
+    public ResponseEntity<ContaPessoalDTO> abonarDividaPessoal(@RequestParam(value = "id")Long id){
+        ContaPessoalDTO state = this.service.abonarDividaPessoal(id);
+        return ResponseEntity.ok(state);
+    }
+    @PostMapping(path = "/{id}/abonarDividaEmpresarial")
+    public ResponseEntity<ContaEmpresarialDTO> abonarDividaEmpresarial (@RequestParam(value = "id")Long id){
+        ContaEmpresarialDTO state = this.service.abonarDividaEmpresarial(id);
+        return ResponseEntity.ok(state);
+    }
+    @PostMapping(path = "/{id}/promoverBanqueiro")
+    public ResponseEntity<BanqueiroDTO> promoverBanqueiro(@RequestParam(value = "id")Long id){
+        BanqueiroDTO state = this.service.promoverBanqueiro(id);
+        return ResponseEntity.ok(state);
+    }
+
+    @PostMapping(path = "/{id}/promoverGernte")
+    public ResponseEntity<GerenteDTO> promoverGerente(@RequestParam(value = "id")Long id){
+        GerenteDTO state = this.service.promoverGerente(id);
+        return ResponseEntity.ok(state);
+    }
 
 }
