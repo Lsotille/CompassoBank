@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class BanqueiroDTO {
+
     private Long id;
 
     private Long agencia;
