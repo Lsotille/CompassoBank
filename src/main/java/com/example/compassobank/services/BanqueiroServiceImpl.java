@@ -32,6 +32,7 @@ public class BanqueiroServiceImpl implements BanqueiroService {
     @Autowired
     private ModelMapper mapper;
 
+
     @Override
     public BanqueiroDTO salvar(BanqueiroFormDTO body) {
         Banqueiro banqueiro = mapper.map(body, Banqueiro.class);
@@ -42,7 +43,7 @@ public class BanqueiroServiceImpl implements BanqueiroService {
     @Override
     public BanqueiroDTO procurar(Long id) {
         Optional<Banqueiro> state = this.repository.findById(id);
-        if (state.isPresent() == true) {
+        if (state.isPresent()) {
             return mapper.map(state.get(), BanqueiroDTO.class);
         }
         throw new RuntimeException("Banqueiro não localizado");
@@ -51,7 +52,7 @@ public class BanqueiroServiceImpl implements BanqueiroService {
     @Override
     public BanqueiroDTO atualizar(Long id, BanqueiroFormDTO body) {
         Optional<Banqueiro> banqueiro = this.repository.findById(id);
-        if (banqueiro.isPresent() == true) {
+        if (banqueiro.isPresent()) {
             Banqueiro st = this.repository.save(banqueiro.get());
             return mapper.map(st, BanqueiroDTO.class);
         }
