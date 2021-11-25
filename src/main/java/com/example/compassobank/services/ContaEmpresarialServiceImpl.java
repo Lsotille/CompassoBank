@@ -3,6 +3,7 @@ package com.example.compassobank.services;
 import com.example.compassobank.dto.ContaEmpresarialDTO;
 import com.example.compassobank.dto.ContaEmpresarialFormDTO;
 import com.example.compassobank.dto.OperacoesDTO;
+import com.example.compassobank.entity.Conta;
 import com.example.compassobank.entity.ContaEmpresarial;
 import com.example.compassobank.repository.ContaEmpresarialRepository;
 import org.modelmapper.ModelMapper;
@@ -70,7 +71,22 @@ public class ContaEmpresarialServiceImpl implements ContaEmpresarialService{
 
     @Override
     public ContaEmpresarialDTO transferenciaInterna(Long id, OperacoesDTO valor, Long destinatario) {
-        return null;
+        Optional<ContaEmpresarial> conta = this.repository.findById(id);
+        Optional<ContaEmpresarial> recebedor = this.repository.findById(destinatario);
+        float saldo = floatValue(conta.get().getSaldo());
+        float valorFloat = floatValue(valor.getValor());
+        if (conta.isPresent() && recebedor.isPresent()) {
+            if (saldo > valorFloat) {
+                conta.get().setSaldo(conta.get().getSaldo().subtract(valor.getValor()));
+                Conta st = this.repository.save(conta.get());
+                recebedor.get().setSaldo(recebedor.get().getSaldo().add(valor.getValor()));
+                Conta st2 = this.repository.save(recebedor.get());
+                return mapper.map(st, ContaEmpresarialDTO.class);
+            } else {
+                throw new RuntimeException("Saldo Insuficiente");
+            }
+        }
+        throw new RuntimeException("Conta não localizada");
     }
 
     @Override
