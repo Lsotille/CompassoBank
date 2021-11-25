@@ -28,17 +28,11 @@ public class EnderecoServiceImpl implements EnderecoService{
         return mapper.map(enderecoResponse, EnderecoDTO.class)        ;
     }
 
-    @Override
-    public List<EnderecoDTO> listar() {
-        List<EnderecoDTO> enderecoDTOList = new ArrayList<>();
-        enderecoDTOList = this.repository.findAll().stream().map(st -> mapper.map(st, EnderecoDTO.class)).collect(Collectors.toList());
-        return enderecoDTOList;
-    }
 
     @Override
     public EnderecoDTO procurar(Long id) {
         Optional<Endereco> state = this.repository.findById(id);
-        if (state.isPresent() == true) {
+        if (state.isPresent()) {
             return mapper.map(state.get(), EnderecoDTO.class);
         }
         throw new RuntimeException("Endereco não localizado");
