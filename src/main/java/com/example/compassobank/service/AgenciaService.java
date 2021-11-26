@@ -1,10 +1,11 @@
-package com.example.compassobank.services;
+package com.example.compassobank.service;
 
 import com.example.compassobank.dto.AgenciaDTO;
 import com.example.compassobank.dto.AgenciaFormDTO;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-@Service
+@Component
 public interface AgenciaService {
     AgenciaDTO salvar(AgenciaFormDTO body);
 

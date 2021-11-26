@@ -1,9 +1,8 @@
-package com.example.compassobank.controllers;
+package com.example.compassobank.controller;
 import com.example.compassobank.dto.AgenciaDTO;
 import com.example.compassobank.dto.AgenciaFormDTO;
-import com.example.compassobank.dto.AgenciaDTO;
-import com.example.compassobank.dto.AssociadoFormDTO;
-import com.example.compassobank.services.AgenciaService;
+import com.example.compassobank.service.AgenciaService;
+import com.example.compassobank.service.AgenciaServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 public class AgenciaController {
 
     @Autowired
-    private AgenciaService service;
+    private AgenciaServiceImpl service;
 
     @PostMapping
     public ResponseEntity<AgenciaDTO> salvar(@RequestBody AgenciaFormDTO body) {

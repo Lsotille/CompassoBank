@@ -1,7 +1,8 @@
-package com.example.compassobank.controllers;
+package com.example.compassobank.controller;
 
 import com.example.compassobank.dto.*;
-import com.example.compassobank.services.ContaPessoalService;
+import com.example.compassobank.service.ContaPessoalService;
+import com.example.compassobank.service.ContaPessoalServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 public class ContaPessoalController {
 
     @Autowired
-    private ContaPessoalService service;
+    private ContaPessoalServiceImpl service;
 
     @PatchMapping(path = "/{id}/saque")
     public ResponseEntity<ContaPessoalDTO> saque (@RequestParam(value = "id") Long id, @RequestBody OperacoesDTO body){

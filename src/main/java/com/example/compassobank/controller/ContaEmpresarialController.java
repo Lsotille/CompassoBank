@@ -1,10 +1,11 @@
-package com.example.compassobank.controllers;
+package com.example.compassobank.controller;
 
 
 import com.example.compassobank.dto.ContaEmpresarialDTO;
 import com.example.compassobank.dto.ContaEmpresarialFormDTO;
 import com.example.compassobank.dto.OperacoesDTO;
-import com.example.compassobank.services.ContaEmpresarialService;
+import com.example.compassobank.service.ContaEmpresarialService;
+import com.example.compassobank.service.ContaEmpresarialServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +16,7 @@ public class ContaEmpresarialController {
 
 
     @Autowired
-    private ContaEmpresarialService service;
+    private ContaEmpresarialServiceImpl service;
 
     @PatchMapping(path = "/{id}/saque")
     public ResponseEntity<ContaEmpresarialDTO> saque (@RequestParam(value = "id") Long id, @RequestBody OperacoesDTO body){

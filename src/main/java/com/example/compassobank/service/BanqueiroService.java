@@ -1,10 +1,11 @@
-package com.example.compassobank.services;
+package com.example.compassobank.service;
 
 
 import com.example.compassobank.dto.*;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-@Service
+@Component
 public interface BanqueiroService {
 
     BanqueiroDTO salvar(BanqueiroFormDTO body);

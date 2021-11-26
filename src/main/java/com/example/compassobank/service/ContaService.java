@@ -1,13 +1,14 @@
-package com.example.compassobank.services;
+package com.example.compassobank.service;
 
 import com.example.compassobank.dto.ContaDTO;
 import com.example.compassobank.dto.ContaFormDTO;
 import com.example.compassobank.dto.OperacoesDTO;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 
-@Service
+@Component
 public interface ContaService {
 
     ContaDTO saque(Long id, OperacoesDTO valor);

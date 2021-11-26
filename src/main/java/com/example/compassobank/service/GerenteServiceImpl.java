@@ -1,4 +1,4 @@
-package com.example.compassobank.services;
+package com.example.compassobank.service;
 
 import com.example.compassobank.dto.*;
 import com.example.compassobank.entity.*;
@@ -6,12 +6,15 @@ import com.example.compassobank.repository.ContaEmpresarialRepository;
 import com.example.compassobank.repository.ContaPessoalRepository;
 import com.example.compassobank.repository.ContaRepository;
 import com.example.compassobank.repository.GerenteRepository;
+import com.example.compassobank.service.GerenteService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
-public class GerenteServiceImpl implements GerenteService{
+@Service
+public class GerenteServiceImpl implements GerenteService {
 
     @Autowired
     private ContaRepository contaRepository;

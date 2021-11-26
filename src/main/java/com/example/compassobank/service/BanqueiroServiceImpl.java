@@ -1,4 +1,4 @@
-package com.example.compassobank.services;
+package com.example.compassobank.service;
 
 import com.example.compassobank.dto.*;
 import com.example.compassobank.entity.*;
@@ -6,15 +6,17 @@ import com.example.compassobank.repository.BanqueiroRepository;
 import com.example.compassobank.repository.ContaEmpresarialRepository;
 import com.example.compassobank.repository.ContaPessoalRepository;
 import com.example.compassobank.repository.ContaRepository;
+import com.example.compassobank.service.BanqueiroService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.Optional;
 
 import static org.aspectj.runtime.internal.Conversions.floatValue;
 
-
+@Service
 public class BanqueiroServiceImpl implements BanqueiroService {
 
     @Autowired

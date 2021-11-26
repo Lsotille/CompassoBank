@@ -1,13 +1,17 @@
-package com.example.compassobank.services;
+package com.example.compassobank.service;
 
 import com.example.compassobank.dto.AssociadoDTO;
 import com.example.compassobank.dto.AssociadoFormDTO;
 import com.example.compassobank.entity.Associado;
 import com.example.compassobank.repository.AssociadoRepository;
+import com.example.compassobank.service.AssociadoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Service;
+
 import java.util.Optional;
 
+@Service
 public class AssociadoServiceImpl implements AssociadoService {
 
     @Autowired
