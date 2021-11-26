@@ -26,4 +26,8 @@ public interface GerenteService {
 
     ContaDTO modificarJuros(Long id, OperacoesDTO body);
 
+    ContaDTO saldoParaMoedaEstrangeira(Long id, OperacoesDTO valor);
+
+    ContaDTO moedaEstrangeiraParaSaldo(Long id, OperacoesDTO valor);
+
 }

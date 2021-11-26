@@ -32,4 +32,8 @@ public interface DiretorService {
     BanqueiroDTO promoverBanqueiro(Long id);
 
     GerenteDTO promoverGerente(Long id);
+
+    ContaDTO saldoParaMoedaEstrangeira(Long id, OperacoesDTO valor);
+
+    ContaDTO moedaEstrangeiraParaSaldo(Long id, OperacoesDTO valor);
 }
