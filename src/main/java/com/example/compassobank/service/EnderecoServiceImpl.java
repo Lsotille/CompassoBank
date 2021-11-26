@@ -1,19 +1,19 @@
-package com.example.compassobank.services;
+package com.example.compassobank.service;
 
 
 import com.example.compassobank.dto.EnderecoDTO;
 import com.example.compassobank.dto.EnderecoFormDTO;
 import com.example.compassobank.entity.Endereco;
 import com.example.compassobank.repository.EnderecoRepository;
+import com.example.compassobank.service.EnderecoService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
-public class EnderecoServiceImpl implements EnderecoService{
+@Service
+public class EnderecoServiceImpl implements EnderecoService {
 
     @Autowired
     private EnderecoRepository repository;

@@ -1,4 +1,4 @@
-package com.example.compassobank.services;
+package com.example.compassobank.service;
 
 import com.example.compassobank.dto.ContaEmpresarialDTO;
 import com.example.compassobank.dto.ContaEmpresarialFormDTO;
@@ -6,14 +6,17 @@ import com.example.compassobank.dto.OperacoesDTO;
 import com.example.compassobank.entity.Conta;
 import com.example.compassobank.entity.ContaEmpresarial;
 import com.example.compassobank.repository.ContaEmpresarialRepository;
+import com.example.compassobank.service.ContaEmpresarialService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 import static org.aspectj.runtime.internal.Conversions.floatValue;
 
-public class ContaEmpresarialServiceImpl implements ContaEmpresarialService{
+@Service
+public class ContaEmpresarialServiceImpl implements ContaEmpresarialService {
 
     @Autowired
     private ContaEmpresarialRepository repository;

@@ -1,9 +1,10 @@
-package com.example.compassobank.services;
+package com.example.compassobank.service;
 
 import com.example.compassobank.dto.*;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-@Service
+@Component
 public interface DiretorService {
 
     DiretorDTO salvar(DiretorFormDTO body);
