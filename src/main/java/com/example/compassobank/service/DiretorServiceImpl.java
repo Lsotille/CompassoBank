@@ -8,7 +8,10 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.Optional;
+
+import static org.aspectj.runtime.internal.Conversions.floatValue;
 
 @Service
 public class DiretorServiceImpl implements DiretorService {
@@ -168,5 +171,40 @@ public class DiretorServiceImpl implements DiretorService {
             return mapper.map(st, GerenteDTO.class);
         }
         throw new RuntimeException("Gerente não encontrado");
+    }
+
+    @Override
+    public ContaDTO saldoParaMoedaEstrangeira(Long id, OperacoesDTO valor) {
+        Optional<Conta> conta = this.contaRepository.findById(id);
+        float saldo = floatValue(conta.get().getSaldo());
+        float valorD = floatValue(valor.getValor());
+        float valorR = (float) (valorD * 5.55);
+        BigDecimal multi = new BigDecimal(5.55);
+        if (conta.isPresent()) {
+            if (saldo > valorR) {
+                conta.get().setSaldo(conta.get().getSaldo().subtract(valor.getValor().multiply(multi)));
+                Conta st = this.contaRepository.save(conta.get());
+                return mapper.map(st, ContaDTO.class);
+            } else {
+                throw new RuntimeException("Sem saldo Suficiente");
+            }
+        }
+        throw new RuntimeException("Conta não encontrada");
+    }
+
+    @Override
+    public ContaDTO moedaEstrangeiraParaSaldo(Long id, OperacoesDTO valor) {
+        Optional<Conta> conta = this.contaRepository.findById(id);
+        float saldo = floatValue(conta.get().getSaldo());
+        float valorD = floatValue(valor.getValor());
+        float valorR = (float) (valorD * 5.55);
+        BigDecimal multi = new BigDecimal(5.55);
+        if (conta.isPresent()) {
+            conta.get().setSaldo(conta.get().getSaldo().add(valor.getValor().multiply(multi)));
+            Conta st = this.contaRepository.save(conta.get());
+            return mapper.map(st, ContaDTO.class);
+        } else {
+            throw new RuntimeException("Conta não encontrada");
+        }
     }
 }

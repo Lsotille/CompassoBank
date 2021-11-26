@@ -23,4 +23,6 @@ public interface BanqueiroService {
     ContaEmpresarialDTO aprovarEmprestimoEmpresarial(Long id, OperacoesDTO body);
 
     ContaDTO saldoParaMoedaEstrangeira(Long id, OperacoesDTO valor);
+
+    ContaDTO moedaEstrangeiraParaSaldo(Long id, OperacoesDTO valor);
 }

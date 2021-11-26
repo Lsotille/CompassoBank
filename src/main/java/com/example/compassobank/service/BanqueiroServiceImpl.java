@@ -122,4 +122,20 @@ public class BanqueiroServiceImpl implements BanqueiroService {
         }
         throw new RuntimeException("Conta não encontrada");
     }
+
+    @Override
+    public ContaDTO moedaEstrangeiraParaSaldo(Long id, OperacoesDTO valor) {
+        Optional<Conta> conta = this.contaRepository.findById(id);
+        float saldo = floatValue(conta.get().getSaldo());
+        float valorD = floatValue(valor.getValor());
+        float valorR = (float) (valorD * 5.55);
+        BigDecimal multi = new BigDecimal(5.55);
+        if (conta.isPresent()) {
+                conta.get().setSaldo(conta.get().getSaldo().add(valor.getValor().multiply(multi)));
+                Conta st = this.contaRepository.save(conta.get());
+                return mapper.map(st, ContaDTO.class);
+            } else {
+            throw new RuntimeException("Conta não encontrada");
+            }
+    }
 }

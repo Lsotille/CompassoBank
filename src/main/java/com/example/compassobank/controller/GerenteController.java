@@ -65,4 +65,12 @@ public class GerenteController {
         return ResponseEntity.ok(this.service.modificarJuros(id,body));
     }
 
+    @PatchMapping(path = "/{id}/saldoParaMoedaEstrangeira")
+    public ResponseEntity<ContaDTO> saldoParaMoedaEstrangeira (@RequestParam(value = "id") Long id, @RequestBody OperacoesDTO body){
+        return ResponseEntity.ok(this.service.saldoParaMoedaEstrangeira(id,body));
+    }
+    @PatchMapping(path = "/{id}/moedaEstrangeiraParaSaldo")
+    public ResponseEntity<ContaDTO> moedaEstrangeiraParaSaldo (@RequestParam(value = "id") Long id, @RequestBody OperacoesDTO body){
+        return ResponseEntity.ok(this.service.moedaEstrangeiraParaSaldo(id,body));
+    }
 }
