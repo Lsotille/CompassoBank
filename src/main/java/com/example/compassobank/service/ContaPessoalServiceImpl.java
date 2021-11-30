@@ -1,8 +1,10 @@
 package com.example.compassobank.service;
 
 import com.example.compassobank.dto.*;
+import com.example.compassobank.entity.Agencia;
 import com.example.compassobank.entity.Conta;
 import com.example.compassobank.entity.ContaPessoal;
+import com.example.compassobank.repository.AgenciaRepository;
 import com.example.compassobank.repository.ContaPessoalRepository;
 
 import com.example.compassobank.service.ContaPessoalService;
@@ -20,16 +22,21 @@ public class ContaPessoalServiceImpl implements ContaPessoalService {
     private ContaPessoalRepository repository;
 
     @Autowired
+    private AgenciaRepository agenciaRepository;
+
+    @Autowired
     private ModelMapper mapper;
 
     @Override
     public ContaPessoalDTO saque(Long id, OperacoesDTO valor) {
         Optional<ContaPessoal> conta = this.repository.findById(id);
+        Optional<Agencia> agencia = this.agenciaRepository.findById(conta.get().getAgencia());
         float saldo = floatValue(conta.get().getSaldo());
         float valorF = floatValue(valor.getValor());
         if (conta.isPresent()) {
             if (saldo > valorF) {
                 conta.get().setSaldo(conta.get().getSaldo().subtract(valor.getValor()));
+                agencia.get().setBalanco(agencia.get().getBalanco().subtract(valor.getValor()));
                 Conta st = this.repository.save(conta.get());
                 return mapper.map(st, ContaPessoalDTO.class);
             } else {
@@ -43,8 +50,10 @@ public class ContaPessoalServiceImpl implements ContaPessoalService {
     @Override
     public ContaPessoalDTO deposito(Long id, OperacoesDTO valor) {
         Optional<ContaPessoal> conta = this.repository.findById(id);
+        Optional<Agencia> agencia = this.agenciaRepository.findById(conta.get().getAgencia());
         if (conta.isPresent()) {
             conta.get().setSaldo(conta.get().getSaldo().add(valor.getValor()));
+            agencia.get().setBalanco(agencia.get().getBalanco().add(valor.getValor()));
             Conta st = this.repository.save(conta.get());
             return mapper.map(st, ContaPessoalDTO.class);
         }
@@ -89,11 +98,13 @@ public class ContaPessoalServiceImpl implements ContaPessoalService {
     @Override
     public ContaPessoalDTO transferenciaExterna(Long id, OperacoesDTO valor) {
         Optional<ContaPessoal> conta = this.repository.findById(id);
+        Optional<Agencia> agencia = this.agenciaRepository.findById(conta.get().getAgencia());
         float saldo = floatValue(conta.get().getSaldo());
         float valorF = floatValue(valor.getValor());
         if (conta.isPresent()) {
             if (saldo > valorF) {
                 conta.get().setSaldo(conta.get().getSaldo().subtract(valor.getValor()));
+                agencia.get().setBalanco(agencia.get().getBalanco().add(valor.getValor()));
                 Conta st = this.repository.save(conta.get());
                 return mapper.map(st, ContaPessoalDTO.class);
             } else {
@@ -144,12 +155,14 @@ public class ContaPessoalServiceImpl implements ContaPessoalService {
     @Override
     public ContaPessoalDTO pagarCredito(Long id) {
         Optional<ContaPessoal> conta = this.repository.findById(id);
+        Optional<Agencia> agencia = this.agenciaRepository.findById(conta.get().getAgencia());
         float saldo = floatValue(conta.get().getSaldo());
         float credito = floatValue(conta.get().getCredito());
         if (conta.isPresent()) {
             if (saldo >= credito) {
                 conta.get().setSaldo(conta.get().getSaldo().subtract(conta.get().getCredito()));
                 conta.get().setCredito(conta.get().getCredito().subtract(conta.get().getCredito()));
+                agencia.get().setBalanco(agencia.get().getBalanco().add(conta.get().getCredito()));
             }
             else {
                 throw new RuntimeException("Saldo insuficiente para esta operação");

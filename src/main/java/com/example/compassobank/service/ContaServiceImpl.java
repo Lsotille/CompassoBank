@@ -3,7 +3,9 @@ package com.example.compassobank.service;
 
 import com.example.compassobank.dto.*;
 
+import com.example.compassobank.entity.Agencia;
 import com.example.compassobank.entity.Conta;
+import com.example.compassobank.repository.AgenciaRepository;
 import com.example.compassobank.repository.ContaRepository;
 import com.example.compassobank.service.ContaService;
 import org.modelmapper.ModelMapper;
@@ -22,16 +24,21 @@ public class ContaServiceImpl implements ContaService {
     private ContaRepository repository;
 
     @Autowired
+    private AgenciaRepository agenciaRepository;
+
+    @Autowired
     private ModelMapper mapper;
 
     @Override
     public ContaDTO saque(Long id, OperacoesDTO valor) {
         Optional<Conta> conta = this.repository.findById(id);
+        Optional<Agencia> agencia = this.agenciaRepository.findById(conta.get().getAgencia());
         float saldo = floatValue(conta.get().getSaldo());
         float valorF = floatValue(valor.getValor());
         if (conta.isPresent()) {
             if (saldo > valorF) {
                 conta.get().setSaldo(conta.get().getSaldo().subtract(valor.getValor()));
+                agencia.get().setBalanco(agencia.get().getBalanco().subtract(valor.getValor()));
                 Conta st = this.repository.save(conta.get());
                 return mapper.map(st, ContaDTO.class);
             } else {
@@ -45,8 +52,10 @@ public class ContaServiceImpl implements ContaService {
     @Override
     public ContaDTO deposito(Long id, OperacoesDTO valor) {
         Optional<Conta> conta = this.repository.findById(id);
+        Optional<Agencia> agencia = this.agenciaRepository.findById(conta.get().getAgencia());
         if (conta.isPresent()){
             conta.get().setSaldo(conta.get().getSaldo().add(valor.getValor()));
+            agencia.get().setBalanco(agencia.get().getBalanco().add(valor.getValor()));
             Conta st = this.repository.save(conta.get());
             return mapper.map(st, ContaDTO.class);
         }

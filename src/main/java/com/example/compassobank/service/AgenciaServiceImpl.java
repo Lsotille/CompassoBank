@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.Optional;
 
 @Service
@@ -55,4 +56,18 @@ public class AgenciaServiceImpl implements AgenciaService {
     Agencia agencia = this.repository.findById(id).get();
     this.repository.delete(agencia);
     }
+
+    @Override
+    public BigDecimal divisaoLucros(Long id) {
+        Optional<Agencia> agencia = this.repository.findById(id);
+        if (agencia.isPresent()){
+            BigDecimal divisao = new BigDecimal("0.25");
+            BigDecimal lucros = agencia.get().getBalanco();
+            lucros.multiply(divisao);
+            return lucros;
+        }
+        throw new RuntimeException("Agencia não encontrada");
+    }
+
+
 }

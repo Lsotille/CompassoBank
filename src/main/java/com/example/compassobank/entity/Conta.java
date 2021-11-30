@@ -14,7 +14,7 @@ public class Conta {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String agencia;
+    private Long agencia;
 
     private BigDecimal saldo;
 
