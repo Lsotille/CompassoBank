@@ -2,6 +2,7 @@ package com.example.compassobank.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.Date;
 
 @Data
@@ -19,6 +20,8 @@ public class Agencia {
     private String nomeDaAgencia;
 
     private Integer CNPJ;
+
+    private BigDecimal balanco;
 
     @OneToOne
     private Endereco endereco;
