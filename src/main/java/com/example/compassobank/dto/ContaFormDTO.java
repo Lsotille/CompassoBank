@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 @Data
 public class ContaFormDTO {
 
-    private String agencia;
+    private Long agencia;
 
     private BigDecimal saldo;
 

@@ -17,7 +17,7 @@ public class Conta {
     private Long id;
 
     @ApiModelProperty(value = "ID da Agencia")
-    private String agencia;
+    private Long agencia;
 
     @ApiModelProperty(value = "Saldo")
     private BigDecimal saldo;

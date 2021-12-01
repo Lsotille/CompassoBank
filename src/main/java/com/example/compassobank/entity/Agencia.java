@@ -3,6 +3,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.Date;
 
 @Data
@@ -27,8 +28,13 @@ public class Agencia {
     @ApiModelProperty(value = "CNPJ")
     private Integer CNPJ;
 
+
     @ApiModelProperty(value = "Endereco")
-    @OneToOne
+     @OneToOne
     private Endereco endereco;
+  
+    @ApiModelProperty(value = "Balanco")
+    private BigDecimal balanco;
+  
 
 }

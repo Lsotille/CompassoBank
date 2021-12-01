@@ -8,7 +8,7 @@ public class ContaEmpresarialDTO {
 
     private Long id;
 
-    private String agencia;
+    private Long agencia;
 
     private BigDecimal saldo;
 

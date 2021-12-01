@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
+
 @RestController
 @RequestMapping(value = "/agencia",produces= "application/json")
 public class AgenciaController {
@@ -58,6 +60,11 @@ public class AgenciaController {
     public ResponseEntity<AgenciaDTO> remover (@RequestParam(value = "id") Long id){
         this.service.remover(id);
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping(path = "/{id}/divisaoLucros")
+    public ResponseEntity<BigDecimal> divisaoLucros (@RequestParam(value = "id") Long id){
+        return ResponseEntity.ok(this.service.divisaoLucros(id));
     }
 
 }
