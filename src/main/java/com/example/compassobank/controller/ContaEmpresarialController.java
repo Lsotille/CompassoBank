@@ -11,7 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/contaEmpresarial")
+@RequestMapping(value = "/contaEmpresarial",produces = "application/json")
 public class ContaEmpresarialController {
 
 

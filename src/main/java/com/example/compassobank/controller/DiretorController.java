@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/diretor")
+@RequestMapping(value = "/diretor",produces = "application/json")
 public class DiretorController {
 
     @Autowired

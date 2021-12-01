@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/contaPessoal")
+@RequestMapping(value = "/contaPessoal",produces = "application/json")
 public class ContaPessoalController {
 
     @Autowired
