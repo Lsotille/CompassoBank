@@ -65,6 +65,11 @@ public class GerenteController {
         return ResponseEntity.ok(this.service.expandirLimitePessoal(id,body));
     }
 
+    @PatchMapping(path = "/{id}/expandirLimiteEmpresarial")
+    public ResponseEntity<ContaEmpresarialDTO> expandirLimiteEmpresarial(@RequestParam(value = "id")Long id, @RequestBody OperacoesDTO body){
+        return ResponseEntity.ok(this.service.expandirLimiteEmpresarial(id,body));
+    }
+
     @ApiOperation(value = "Aprova uma Conta")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Aprovado com Sucesso"),
