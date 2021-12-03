@@ -18,6 +18,8 @@ public interface GerenteService {
 
     ContaPessoalDTO expandirLimitePessoal(Long id, OperacoesDTO body);
 
+    ContaEmpresarialDTO expandirLimiteEmpresarial(Long id, OperacoesDTO body);
+
     ContaDTO aprovarConta(Long id);
 
     ContaPessoalDTO aprovarEmprestimoPessoal(Long id, OperacoesDTO body);

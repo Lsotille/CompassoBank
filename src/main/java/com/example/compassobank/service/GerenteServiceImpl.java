@@ -79,6 +79,17 @@ public class GerenteServiceImpl implements GerenteService {
     }
 
     @Override
+    public ContaEmpresarialDTO expandirLimiteEmpresarial(Long id, OperacoesDTO body) {
+        Optional<ContaEmpresarial> conta = this.contaEmpresarialRepository.findById(id);
+        if (conta.isPresent()) {
+            conta.get().setLimite(body.getValor());
+            Conta st = this.contaEmpresarialRepository.save(conta.get());
+            return mapper.map(st, ContaEmpresarialDTO.class);
+        }
+        throw new RuntimeException("Conta não encontrada");
+    }
+
+    @Override
     public ContaDTO aprovarConta(Long id) {
         Optional<Conta> conta = this.contaRepository.findById(id);
         if (conta.isPresent()) {
