@@ -2,10 +2,7 @@ package com.example.compassobank.service;
 
 import com.example.compassobank.dto.*;
 import com.example.compassobank.entity.*;
-import com.example.compassobank.repository.ContaEmpresarialRepository;
-import com.example.compassobank.repository.ContaPessoalRepository;
-import com.example.compassobank.repository.ContaRepository;
-import com.example.compassobank.repository.GerenteRepository;
+import com.example.compassobank.repository.*;
 import com.example.compassobank.service.GerenteService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +27,9 @@ public class GerenteServiceImpl implements GerenteService {
 
     @Autowired
     private GerenteRepository repository;
+
+    @Autowired
+    private BanqueiroRepository banqueiroRepository;
 
     @Autowired
     private ModelMapper mapper;
@@ -65,6 +65,17 @@ public class GerenteServiceImpl implements GerenteService {
     public void remover(Long id) {
         Gerente gerente = this.repository.findById(id).get();
         this.repository.delete(gerente);
+    }
+
+    @Override
+    public BanqueiroDTO aprovarFuncionario(Long id) {
+        Optional<Banqueiro> banqueiro = this.banqueiroRepository.findById(id);
+        if (banqueiro.isPresent()) {
+            banqueiro.get().setAprovado(true);
+            Banqueiro st = this.banqueiroRepository.save(banqueiro.get());
+            return mapper.map(st, BanqueiroDTO.class);
+        }
+        throw new RuntimeException("Funcionario não encontrado");
     }
 
     @Override
