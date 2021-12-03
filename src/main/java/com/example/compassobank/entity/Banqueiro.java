@@ -20,6 +20,8 @@ public class Banqueiro extends Associado{
     @ApiModelProperty(value = "Salario")
     private double salario;
 
+    @ApiModelProperty(value = "Aprovado")
+    private boolean aprovado = false;
 }
 
 

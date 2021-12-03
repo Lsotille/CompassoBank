@@ -16,6 +16,8 @@ public interface GerenteService {
 
     void remover(Long id);
 
+    BanqueiroDTO aprovarFuncionario(Long id);
+
     ContaPessoalDTO expandirLimitePessoal(Long id, OperacoesDTO body);
 
     ContaEmpresarialDTO expandirLimiteEmpresarial(Long id, OperacoesDTO body);

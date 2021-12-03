@@ -60,6 +60,12 @@ public class GerenteController {
         return ResponseEntity.ok().build();
     }
 
+    @PostMapping(path = "/{id}/aprovarFuncionario")
+    public ResponseEntity<BanqueiroDTO> aprovarFuncionario(@RequestParam(value = "id")Long id){
+        BanqueiroDTO state = this.service.aprovarFuncionario(id);
+        return ResponseEntity.ok(state);
+    }
+
     @PatchMapping(path = "/{id}/expandirLimitePessoal")
     public ResponseEntity<ContaPessoalDTO> expandirLimitePessoal(@RequestParam(value = "id")Long id, @RequestBody OperacoesDTO body){
         return ResponseEntity.ok(this.service.expandirLimitePessoal(id,body));
