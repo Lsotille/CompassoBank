@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 @Data
 @Entity
 @Table(name = "ContaPessoal")
+@PrimaryKeyJoinColumn(name="id")
 public class ContaPessoal extends Conta{
 
     @ApiModelProperty(value = "Limite")

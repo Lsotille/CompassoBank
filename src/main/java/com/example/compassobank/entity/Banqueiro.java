@@ -8,6 +8,7 @@ import javax.persistence.*;
 @Data
 @Entity
 @Table(name = "banqueiro")
+@PrimaryKeyJoinColumn(name="id")
 public class Banqueiro extends Associado{
 
 

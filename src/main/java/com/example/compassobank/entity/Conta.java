@@ -9,6 +9,8 @@ import java.math.BigDecimal;
 @Data
 @Entity
 @Table(name = "conta")
+@Inheritance(strategy = InheritanceType.JOINED)
+
 public class Conta {
 
     @ApiModelProperty(value = "ID da Conta")

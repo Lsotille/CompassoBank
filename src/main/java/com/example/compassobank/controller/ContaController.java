@@ -25,8 +25,9 @@ public class ContaController {
             @ApiResponse(code = 200, message = "Saque com Sucesso"),
             @ApiResponse(code = 500, message = "Foi gerada uma exceção"),
     })
+
     @PatchMapping(path = "/{id}/saque")
-    public ResponseEntity<ContaDTO> saque (@RequestParam(value = "id") Long id, @RequestBody OperacoesDTO body){
+    public ResponseEntity<ContaDTO> saque (@PathVariable(value = "id") Long id, @RequestBody OperacoesDTO body){
         return ResponseEntity.ok(this.service.saque(id,body));
     }
 
@@ -36,7 +37,7 @@ public class ContaController {
             @ApiResponse(code = 500, message = "Foi gerada uma exceção"),
     })
     @PatchMapping(path = "/{id}/deposito")
-    public ResponseEntity<ContaDTO> deposito (@RequestParam(value = "id") Long id, @RequestBody OperacoesDTO body){
+    public ResponseEntity<ContaDTO> deposito (@PathVariable(value = "id") Long id, @RequestBody OperacoesDTO body){
         return ResponseEntity.ok(this.service.deposito(id,body));
     }
 
@@ -57,7 +58,7 @@ public class ContaController {
             @ApiResponse(code = 500, message = "Foi gerada uma exceção"),
     })
     @GetMapping(path = "/{id}")
-    public ResponseEntity<ContaDTO> procurar (@RequestParam(value = "id") Long id){
+    public ResponseEntity<ContaDTO> procurar (@PathVariable(value = "id") Long id){
         return ResponseEntity.ok(this.service.procurar(id));
     }
 
@@ -67,7 +68,7 @@ public class ContaController {
             @ApiResponse(code = 500, message = "Foi gerada uma exceção"),
     })
     @PutMapping(path = "/{id}")
-    public ResponseEntity<ContaDTO> atualizar (@RequestParam(value = "id") Long id, @RequestBody ContaFormDTO body){
+    public ResponseEntity<ContaDTO> atualizar (@PathVariable(value = "id") Long id, @RequestBody ContaFormDTO body){
         return ResponseEntity.ok(this.service.atualizar(id,body));
     }
 
@@ -77,7 +78,7 @@ public class ContaController {
             @ApiResponse(code = 500, message = "Foi gerada uma exceção"),
     })
     @DeleteMapping(path = "/{id}")
-    public ResponseEntity<ContaDTO> remover (@RequestParam(value = "id") Long id){
+    public ResponseEntity<ContaDTO> remover (@PathVariable(value = "id") Long id){
         this.service.remover(id);
         return ResponseEntity.ok().build();
     }

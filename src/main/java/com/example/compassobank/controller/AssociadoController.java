@@ -36,7 +36,7 @@ public class AssociadoController {
             @ApiResponse(code = 500, message = "Foi gerada uma exceção"),
     })
     @GetMapping(path = "/{id}")
-    public ResponseEntity<AssociadoDTO> procurar (@RequestParam(value = "id") Long id){
+    public ResponseEntity<AssociadoDTO> procurar (@PathVariable(value = "id") Long id){
         return ResponseEntity.ok(this.service.procurar(id));
     }
 
@@ -46,7 +46,7 @@ public class AssociadoController {
             @ApiResponse(code = 500, message = "Foi gerada uma exceção"),
     })
     @PutMapping(path = "/{id}")
-    public ResponseEntity<AssociadoDTO> atualizar (@RequestParam(value = "id") Long id, @RequestBody AssociadoFormDTO body){
+    public ResponseEntity<AssociadoDTO> atualizar (@PathVariable(value = "id") Long id, @RequestBody AssociadoFormDTO body){
         return ResponseEntity.ok(this.service.atualizar(id,body));
     }
 
@@ -56,7 +56,7 @@ public class AssociadoController {
             @ApiResponse(code = 500, message = "Foi gerada uma exceção"),
     })
     @DeleteMapping(path = "/{id}")
-    public ResponseEntity<AssociadoDTO> remover (@RequestParam(value = "id") Long id){
+    public ResponseEntity<AssociadoDTO> remover (@PathVariable(value = "id") Long id){
         this.service.remover(id);
         return ResponseEntity.ok().build();
     }

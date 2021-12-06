@@ -7,6 +7,7 @@ import javax.persistence.*;
 @Data
 @Entity
 @Table(name = "gerente")
+@PrimaryKeyJoinColumn(name="id")
 public class Gerente extends Banqueiro{
 
 }

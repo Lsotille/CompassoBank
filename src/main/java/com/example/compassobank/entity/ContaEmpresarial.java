@@ -4,12 +4,14 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import java.math.BigDecimal;
 
 @Data
 @Entity
 @Table(name = "ContaEmpresarial")
+@PrimaryKeyJoinColumn(name="id")
 public class ContaEmpresarial extends Conta{
 
     @ApiModelProperty(value = "Nome Fantasia")
