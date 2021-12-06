@@ -9,8 +9,6 @@ import lombok.Data;
 @Data
 public class AssociadoFormDTO {
 
-    private Long id;
-
     private String nome;
 
     private String trabalho;

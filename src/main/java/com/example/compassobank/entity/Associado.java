@@ -9,6 +9,7 @@ import java.util.Date;
 @Data
 @Entity
 @Table(name = "associados")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Associado {
 
     @ApiModelProperty(value = "ID do Associado")

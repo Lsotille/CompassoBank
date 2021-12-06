@@ -35,7 +35,7 @@ public class DiretorController {
             @ApiResponse(code = 500, message = "Foi gerada uma exceção"),
     })
     @GetMapping(path = "/{id}")
-    public ResponseEntity<DiretorDTO> procurar (@RequestParam(value = "id") Long id){
+    public ResponseEntity<DiretorDTO> procurar (@PathVariable(value = "id") Long id){
         return ResponseEntity.ok(this.service.procurar(id));
     }
 
@@ -45,7 +45,7 @@ public class DiretorController {
             @ApiResponse(code = 500, message = "Foi gerada uma exceção"),
     })
     @PutMapping(path = "/{id}")
-    public ResponseEntity<DiretorDTO> atualizar (@RequestParam(value = "id") Long id, @RequestBody DiretorFormDTO body){
+    public ResponseEntity<DiretorDTO> atualizar (@PathVariable(value = "id") Long id, @RequestBody DiretorFormDTO body){
         return ResponseEntity.ok(this.service.atualizar(id,body));
     }
 
@@ -55,7 +55,7 @@ public class DiretorController {
             @ApiResponse(code = 500, message = "Foi gerada uma exceção"),
     })
     @DeleteMapping(path = "/{id}")
-    public ResponseEntity<DiretorDTO> remover (@RequestParam(value = "id") Long id){
+    public ResponseEntity<DiretorDTO> remover (@PathVariable(value = "id") Long id){
         this.service.remover(id);
         return ResponseEntity.ok().build();
     }
@@ -66,7 +66,7 @@ public class DiretorController {
             @ApiResponse(code = 500, message = "Foi gerada uma exceção"),
     })
     @PostMapping(path = "/{id}")
-    public ResponseEntity<ContaDTO> aprovarconta(@RequestParam(value = "id")Long id){
+    public ResponseEntity<ContaDTO> aprovarconta(@PathVariable(value = "id")Long id){
         ContaDTO state = this.service.aprovarConta(id);
         return ResponseEntity.ok(state);
     }
