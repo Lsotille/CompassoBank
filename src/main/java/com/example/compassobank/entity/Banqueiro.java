@@ -4,6 +4,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Data
 @Entity
@@ -18,7 +19,7 @@ public class Banqueiro extends Associado{
     private String cargo;
 
     @ApiModelProperty(value = "Salario")
-    private double salario;
+    private BigDecimal salario;
 
     @ApiModelProperty(value = "Aprovado")
     private boolean aprovado = false;
