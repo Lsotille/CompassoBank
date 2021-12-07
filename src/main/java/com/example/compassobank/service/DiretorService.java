@@ -15,6 +15,8 @@ public interface DiretorService {
 
     void remover(Long id);
 
+    BanqueiroDTO mudarSalario(Long id, OperacoesDTO body);
+
     ContaDTO aprovarConta(Long id);
 
     ContaPessoalDTO aprovarEmprestimoPessoal(Long id, OperacoesDTO body);

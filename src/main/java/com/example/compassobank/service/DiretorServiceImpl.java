@@ -71,6 +71,17 @@ public class DiretorServiceImpl implements DiretorService {
     }
 
     @Override
+    public BanqueiroDTO mudarSalario(Long id, OperacoesDTO body) {
+        Optional<Banqueiro> banqueiro = this.banqueiroRepository.findById(id);
+        if (banqueiro.isPresent()) {
+            banqueiro.get().setSalario(body.getValor());
+            Banqueiro st = this.banqueiroRepository.save(banqueiro.get());
+            return mapper.map(st, BanqueiroDTO.class);
+        }
+        throw new RuntimeException("Conta não encontrada");
+    }
+
+    @Override
     public ContaDTO aprovarConta(Long id) {
         Optional<Conta> conta = this.contaRepository.findById(id);
         if (conta.isPresent()) {

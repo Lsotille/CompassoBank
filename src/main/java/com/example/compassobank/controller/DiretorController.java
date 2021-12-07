@@ -60,6 +60,11 @@ public class DiretorController {
         return ResponseEntity.ok().build();
     }
 
+    @PatchMapping(path = "/{id}/mudarSalario")
+    public ResponseEntity<BanqueiroDTO> mudarSalario(@RequestParam(value = "id")Long id, @RequestBody OperacoesDTO body){
+        return ResponseEntity.ok(this.service.mudarSalario(id,body));
+    }
+
     @ApiOperation(value = "Aprova uma Conta")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Aprovado com Sucesso"),
